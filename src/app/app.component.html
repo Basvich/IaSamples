@@ -302,6 +302,25 @@
   }
 </style>
 
+<mat-toolbar color="primary"> 
+  <span class="fill-remaining-space">
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Help</button>
+      <mat-list>
+        <a mat-list-item routerLink="/BasicFunctions" routerLinkActive="active">Basic functions</a>
+        <a mat-list-item routerLink="/p5Test" routerLinkActive="active">2D Test</a>
+      </mat-list>
+    </mat-menu>
+  </span>
+  <span class="fill-remaining-space">Application Title</span>
+  
+</mat-toolbar>
+
+
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <img
