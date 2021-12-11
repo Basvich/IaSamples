@@ -7,6 +7,19 @@
         <div flex>
           <button mat-button color="primary" (click)="test1()">Test 1</button>          
         </div>
+        <div flex>
+          <button mat-button color="primary" (click)="testConv2DBasic()">Conv 2D</button>          
+        </div>
+        <div flex>
+          <button mat-button color="primary" (click)="ConvAny()">Apply Conv 2D</button>          
+        </div>
+        <div flex>
+          <button mat-button color="primary" (click)="ConvLena()">Apply Conv lenna</button>          
+        </div>
+        <div flex>
+          <button mat-button color="primary" (click)="MaxMinLena()">Apply Max min lenna</button>  
+          <button mat-button color="primary" (click)="BlurLena()">Apply Blur lenna</button>          
+        </div>
         <div flex>pollo</div>
         <div flex>
           <canvas id="canvasOut" width="280" height="280" style="border: 1px solid black;">
