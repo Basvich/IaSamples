@@ -152,7 +152,7 @@ export class BasicFunctionsComponent implements OnInit {
     
     // Volvemos a pasarlo a imagen y la mostramos de nuevo como salida
     const canvasOut = document.getElementById('canvasOut') as HTMLCanvasElement;    
-    var t2=this.getImageTensor(tImg)
+    var t2=this.getImageTensor(tImg); //Tenemos la imagen en el tensor
     let o3=await this.frame(t2, {filter:this.gaussian, zoom:2, kernelWidth:1});
     tf.dispose(t2);
     console.log('Shape of the o3:', o3.shape);
