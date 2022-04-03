@@ -13,13 +13,15 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { BasicFunctionsComponent } from './basic-functions/basic-functions.component';
+import { ToxicityComponent } from './toxicity/toxicity.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    BasicFunctionsComponent
+    BasicFunctionsComponent,
+    ToxicityComponent
   ],
   imports: [
     BrowserModule,

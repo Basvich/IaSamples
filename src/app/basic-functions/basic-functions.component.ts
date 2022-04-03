@@ -212,7 +212,7 @@ export class BasicFunctionsComponent implements OnInit {
   }
 
   /**
-   *
+   * Aplica el filtro indicado
    *
    * @param {*} tensor
    * @param {{filter: (x:number)=>number; zoom: number; kernelWidth: number;}} args
