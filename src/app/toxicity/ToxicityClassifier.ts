@@ -1,5 +1,6 @@
 // Obtenido de https://github.com/tensorflow/tfjs-models/blob/5a8e0748c23e0a572bf0038d056584f58fccbfea/toxicity/src/index.ts#L44
 import * as use from '@tensorflow-models/universal-sentence-encoder';
+//const use = require('@tensorflow-models/universal-sentence-encoder');
 import * as tfconv from '@tensorflow/tfjs-converter';
 import * as tf from '@tensorflow/tfjs';
 
@@ -43,13 +44,20 @@ export class ToxicityClassifier {
             {fromTFHub: true});
     }
 
-    async loadTokenizer() {
-        return use.loadTokenizer();
+    async loadTokenizer(): Promise<use.Tokenizer>{
+        const t=use.Tokenizer;
+        const r= use.loadTokenizer();
+        return r;
     }
 
     async load() {
-        const [model, tokenizer] =
-            await Promise.all([this.loadModel(), this.loadTokenizer()]);
+        //const [model, tokenizer] = await Promise.all([this.loadModel(), this.loadTokenizer()]);
+        const model =await this.loadModel();
+        const ul=await use.load();
+        let tok2 = (<any>ul).tokenizer;
+        var ee=await ul.embed("one day is good day");
+        //this.tokenizer=ul.loadModel        
+        const tokenizer=tok2; //await use.loadTokenizer();
 
         this.model = model;
         this.tokenizer = tokenizer;
@@ -81,12 +89,11 @@ export class ToxicityClassifier {
             inputs = [inputs];
         }
 
-        const encodings = inputs.map(d => this.tokenizer.encode(d));
+        let encodings = inputs.map(d => this.tokenizer!.encode(d)) ;
         // TODO: revive once the model is robust to padding
         // const encodings = inputs.map(d => padInput(this.tokenizer.encode(d)));
 
-        const indicesArr =
-            encodings.map((arr, i) => arr.map((d, index) => [i, index]));
+        const indicesArr = encodings.map((arr, i) => arr?.map((d, index) => [i, index]));
 
         let flattenedIndicesArr: Array<[number, number]> = [];
         for (let i = 0; i < indicesArr.length; i++) {
@@ -94,8 +101,7 @@ export class ToxicityClassifier {
                 flattenedIndicesArr.concat(indicesArr[i] as Array<[number, number]>);
         }
 
-        const indices = tf.tensor2d(
-            flattenedIndicesArr, [flattenedIndicesArr.length, 2], 'int32');
+        const indices = tf.tensor2d(flattenedIndicesArr, [flattenedIndicesArr.length, 2], 'int32');        
         const values = tf.tensor1d(tf.util.flatten(encodings) as number[], 'int32');
 
         const modelInputs: ModelInputs = {
