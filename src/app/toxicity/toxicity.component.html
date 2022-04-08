@@ -5,4 +5,26 @@
     <div flex>
       <button mat-button color="primary" (click)="test2()">Test 1</button>          
    </div>
+   <div flex>
+      <mat-form-field appearance="fill">
+         <mat-label>Server</mat-label>
+         <input matInput [(ngModel)]="Frase">
+       </mat-form-field>
+       <button mat-raised-button (click)="analize()">Probar</button>
+   </div>
+   <div flex>
+     <span>Toxicity:</span><span >{{Toxicity | percent}}</span>
+   </div>
+   <div flex>
+     <span>Insult:</span><span >{{Insult | percent}}</span>
+   </div>
+   <div flex>
+      <span>Identity attack:</span><span >{{IdentityAtack | percent}}</span>
+    </div>
+    <div flex>
+      <span>Obscene:</span><span >{{Obscene | percent}}</span>
+    </div>
+   <div flex>
+     <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
+   </div>
 </div>

@@ -10,6 +10,14 @@ declare interface ModelInputs extends tf.NamedTensorMap {
     Placeholder: tf.Tensor;
 }
 
+export interface IResponseToxicity{
+  label: string;
+  results:{
+      probabilities: Float32Array;
+      match: boolean | null;
+    }[]
+}
+
 /**
  * Load the toxicity model.
  *
@@ -44,21 +52,22 @@ export class ToxicityClassifier {
             {fromTFHub: true});
     }
 
-    async loadTokenizer(): Promise<use.Tokenizer>{
-        const t=use.Tokenizer;
-        const r= use.loadTokenizer();
-        return r;
+    async loadTokenizer(): Promise<use.Tokenizer>{        
+        // return use.loadTokenizer(); original, pero que no funciona
+        const ul=await use.load();
+        let tok2 = (<any>ul).tokenizer;
+        return tok2;      
     }
 
     async load() {
         //const [model, tokenizer] = await Promise.all([this.loadModel(), this.loadTokenizer()]);
         const model =await this.loadModel();
-        const ul=await use.load();
-        let tok2 = (<any>ul).tokenizer;
-        var ee=await ul.embed("one day is good day");
+        //const ul=await use.load();
+        //let tok2 = (<any>ul).tokenizer;
+        //var ee=await ul.embed("one day is good day");
         //this.tokenizer=ul.loadModel        
-        const tokenizer=tok2; //await use.loadTokenizer();
-
+        //const tokenizer=tok2; //await use.loadTokenizer();
+        const tokenizer=await this.loadTokenizer();
         this.model = model;
         this.tokenizer = tokenizer;
 
