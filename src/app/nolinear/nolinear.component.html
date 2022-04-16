@@ -1,0 +1,17 @@
+<!-- Ejemplo de flex obtenido de https://www.quackit.com/css/flexbox/tutorial/nested_flex_containers.cfm-->
+<div  class="container">
+  <div class="red">
+    <div class="green">
+      <button mat-button color="primary" (click)="CreateModel()">create model</button>          
+    </div>
+    <div class="blue">
+      <button mat-button color="primary" (click)="Entrenar()">Entranar</button>          
+    </div>
+    <div class="green">
+      <button mat-button color="primary" (click)="TestModel()">Test model</button>          
+    </div>
+  </div>
+</div>
+<div class="green">
+  <canvas id="canvaschart" height="100">{{chart}}</canvas>
+</div>

@@ -17,6 +17,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { BasicFunctionsComponent } from './basic-functions/basic-functions.component';
 import { ToxicityComponent } from './toxicity/toxicity.component';
+import { NolinearComponent } from './nolinear/nolinear.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ToxicityComponent } from './toxicity/toxicity.component';
     AppComponent,
     NavComponent,
     BasicFunctionsComponent,
-    ToxicityComponent
+    ToxicityComponent,
+    NolinearComponent
   ],
   imports: [
     BrowserModule,
