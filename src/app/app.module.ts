@@ -18,6 +18,8 @@ import { MatListModule } from '@angular/material/list';
 import { BasicFunctionsComponent } from './basic-functions/basic-functions.component';
 import { ToxicityComponent } from './toxicity/toxicity.component';
 import { NolinearComponent } from './nolinear/nolinear.component';
+// Add flex-layout
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { NolinearComponent } from './nolinear/nolinear.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    FlexLayoutModule,
     LayoutModule,
     MatBadgeModule,
     MatToolbarModule,
