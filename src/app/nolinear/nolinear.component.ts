@@ -28,6 +28,42 @@ export class NolinearComponent implements OnInit {
     const model = tf.sequential();
     //Entradas
     model.add(tf.layers.dense({
+      inputShape: [1],  //una entrada 1d, con 1 parametro; N-D tensor with shape
+      units: 20,  //20 salidas, o una primera capa de 20 neuronas ; Positive integer, dimensionality of the output space.
+      activation: 'relu',
+    }));
+    //intermedia
+    model.add(
+      tf.layers.dense({
+        units: 20,
+        activation: 'relu', //Ver disponibles en https://tech.courses/plotting-tensorflow-js-activation-functions/
+      })
+    );
+    model.add(
+      tf.layers.dense({
+        units: 5,
+        activation: 'relu', //Ver disponibles en https://tech.courses/plotting-tensorflow-js-activation-functions/
+      })
+    );
+    //Salida
+    model.add(
+      tf.layers.dense({
+        units: 1,
+      })
+    );
+    // Compile for training
+    model.compile({
+      optimizer: 'adam',
+      loss: 'meanSquaredError',
+    })
+    this.model = model;
+    this.model.summary();
+  }
+
+  public CreateModel2(): void {
+    const model = tf.sequential();
+    //Entradas
+    model.add(tf.layers.dense({
       inputShape: [1],
       units: 20,
       activation: 'relu',
@@ -51,7 +87,6 @@ export class NolinearComponent implements OnInit {
       loss: 'meanSquaredError',
     })
     this.model = model;
-
   }
 
   public async Entrenar(): Promise<void> {
