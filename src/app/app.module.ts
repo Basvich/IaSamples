@@ -20,6 +20,8 @@ import { ToxicityComponent } from './toxicity/toxicity.component';
 import { NolinearComponent } from './nolinear/nolinear.component';
 // Add flex-layout
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,13 +30,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     NavComponent,
     BasicFunctionsComponent,
     ToxicityComponent,
-    NolinearComponent
+    NolinearComponent,
+    DialogoConfirmacionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatButtonModule, 
     FlexLayoutModule,
     LayoutModule,
     MatBadgeModule,
@@ -49,7 +55,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   providers: [
    
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogoConfirmacionComponent
+  ]
 })
 export class AppModule {
   constructor() {    

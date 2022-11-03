@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import * as tf from '@tensorflow/tfjs';
+import { DialogoConfirmacionComponent } from '../dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-basic-functions',
@@ -8,7 +10,7 @@ import * as tf from '@tensorflow/tfjs';
 })
 export class BasicFunctionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogo: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -282,6 +284,21 @@ export class BasicFunctionsComponent implements OnInit {
       return tf.reshape(resizedImage, shape.slice(1) as [number, number, number]);
     });
   } */
+
+  mostrarDialogo(): void {
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `¿Te gusta programar en TypeScript?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          alert("¡A mí también!");
+        } else {
+          alert("Deberías probarlo, a mí me gusta :)");
+        }
+      });
+  }
   
 
 
