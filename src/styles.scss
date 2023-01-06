@@ -24,6 +24,7 @@
   light.$my-app-light-variants
 );
 
+/* TODO(mdc-migration): The following rule targets internal classes of dialog that may no longer apply for the MDC version. */
 mat-dialog-container {
     background: mat.get-color-from-palette(light.$my-app-light-theme, default-contrast) !important;
  }
