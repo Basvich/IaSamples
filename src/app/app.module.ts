@@ -8,22 +8,22 @@ import { FormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import {MatBadgeModule} from '@angular/material/badge';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import { MatListModule } from '@angular/material/list';
+import {MatLegacyMenuModule as MatMenuModule} from '@angular/material/legacy-menu';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { BasicFunctionsComponent } from './basic-functions/basic-functions.component';
 import { ToxicityComponent } from './toxicity/toxicity.component';
 import { NolinearComponent } from './nolinear/nolinear.component';
 // Add flex-layout
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 
 
 @NgModule({
