@@ -122,8 +122,10 @@
       }
     }
   },
-  "defaultProject": "IaSamples",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
+    "analytics": "1e9edf40-38bd-4785-9822-8319bd74a38c"
   }
 }

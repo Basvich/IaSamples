@@ -27,42 +27,37 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    BasicFunctionsComponent,
-    ToxicityComponent,
-    NolinearComponent,
-    DialogoConfirmacionComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatDialogModule,
-    BrowserAnimationsModule,
-    MatButtonModule, 
-    FlexLayoutModule,
-    LayoutModule,
-    MatBadgeModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatInputModule,
-    MatProgressSpinnerModule 
-  ],
-  providers: [
-   
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    DialogoConfirmacionComponent
-  ]
+    declarations: [
+        AppComponent,
+        NavComponent,
+        BasicFunctionsComponent,
+        ToxicityComponent,
+        NolinearComponent,
+        DialogoConfirmacionComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        FlexLayoutModule,
+        LayoutModule,
+        MatBadgeModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatMenuModule,
+        MatInputModule,
+        MatProgressSpinnerModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor() {    
