@@ -1,30 +1,32 @@
 <div flex fxLayout="column">
-    <div flex>
-       <button mat-button color="primary" (click)="test1()">load model</button>          
-    </div>
-    <div flex>
-      <button mat-button color="primary" (click)="test2()">Test 1</button>          
-   </div>
-   <div flex>
-      <mat-form-field appearance="fill">
-         <mat-label>Server</mat-label>
-         <input matInput [(ngModel)]="Frase">
-       </mat-form-field>
-       <button mat-raised-button (click)="analize()">Probar</button>
-   </div>
-   <div flex>
-     <span>Toxicity:</span><span >{{Toxicity | percent}}</span>
-   </div>
-   <div flex>
-     <span>Insult:</span><span >{{Insult | percent}}</span>
-   </div>
-   <div flex>
-      <span>Identity attack:</span><span >{{IdentityAtack | percent}}</span>
-    </div>
-    <div flex>
-      <span>Obscene:</span><span >{{Obscene | percent}}</span>
-    </div>
-   <div flex>
-     <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
-   </div>
+  <div flex>
+    <button mat-button color="primary" (click)="test1()">load model</button>
+  </div>
+  <div flex>
+    <button mat-button color="primary" (click)="test2()">Test 1</button>
+    <button mat-button color="secondary" (click)="test3()">Test angular</button>
+  </div>
+  <div flex>
+    <mat-form-field appearance="fill">
+      <mat-label>Text to test</mat-label>
+      <input matInput type="text" [(ngModel)]="Frase"/>
+    </mat-form-field>
+    <button mat-raised-button (click)="analize()">Probar</button>
+  </div>
+  <div flex>
+    <span>Toxicity:</span><span>{{Toxicity | percent}}</span>
+  </div>
+  <div flex>
+    <span>Insult:</span><span>{{Insult | percent}}</span>
+  </div>
+  <div flex>
+    <span>Identity attack:</span><span>{{IdentityAtack | percent}}</span>
+  </div>
+  <div flex>
+    <span>Obscene:</span><span>{{Obscene | percent}}</span>
+  </div>
+  <div flex>
+    <span matBadge="4" matBadgeOverlap="false">Text with a badge</span>
+  </div>
 </div>
+<mat-spinner *ngIf="busy$ | async"></mat-spinner>

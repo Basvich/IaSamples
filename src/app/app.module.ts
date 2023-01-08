@@ -11,40 +11,50 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { BasicFunctionsComponent } from './basic-functions/basic-functions.component';
 import { ToxicityComponent } from './toxicity/toxicity.component';
+import { NolinearComponent } from './nolinear/nolinear.component';
+import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    BasicFunctionsComponent,
-    ToxicityComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    LayoutModule,
-    MatBadgeModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-  ],
-  providers: [
-   
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavComponent,
+        BasicFunctionsComponent,
+        ToxicityComponent,
+        NolinearComponent,
+        DialogoConfirmacionComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        LayoutModule,
+        MatBadgeModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatMenuModule,
+        MatInputModule,
+        MatProgressSpinnerModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor() {    

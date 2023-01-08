@@ -1,0 +1,19 @@
+<!-- Ejemplo de flex obtenido de https://www.quackit.com/css/flexbox/tutorial/nested_flex_containers.cfm-->
+<!-- Ejemplo de laoyut usando flex-layout https://stackblitz.com/edit/angular-flexlayouts-sample?file=src%2Fapp%2Fapp.component.html  -->
+<div  fxLayout="column">  
+  <div fxLayout="row"  >
+    <div >
+      <button mat-button color="primary" (click)="CreateModel()">create model</button>          
+    </div>
+    <div >
+      <button mat-button color="primary" (click)="Entrenar()">Entrenar</button>          
+    </div>
+    <div >
+      <button mat-button color="primary" (click)="TestModel()">Test model</button>          
+    </div> 
+  </div> 
+</div>
+<div >
+  <canvas id="canvaschart" height="100">{{chart}}</canvas>
+</div>
+
