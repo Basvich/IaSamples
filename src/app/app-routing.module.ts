@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import {BasicFunctionsComponent} from './basic-functions/basic-functions.component';
 import { ToxicityComponent } from './toxicity/toxicity.component';
 import { NolinearComponent } from './nolinear/nolinear.component';
+import { TitanicComponent } from './titanic/titanic.component';
 const routes: Routes = [
   {path: 'BasicFunctions', component: BasicFunctionsComponent },
   {path: 'Toxicity', component: ToxicityComponent },
-  {path: 'NoLinear', component: NolinearComponent }
+  {path: 'NoLinear', component: NolinearComponent },
+  {path: 'Titanic', component: TitanicComponent }
 ];
 
 @NgModule({

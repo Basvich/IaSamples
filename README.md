@@ -1,9 +1,10 @@
 # IaSamples
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3. Update a angular 15
 
 ## Que hay
 Es un proyecto que usa angular como base para probar diferentes ejecrcios relacionados con tensor flow JS. Y como usarlos. Algunos de los ejemplos son adaptaciones directas de los ejemplos obtenidos del libro **Leaning TensoFlow.js** Con algun pequeño cambio para que funcione.
+Hay 
 
 
 ### basic-functions
@@ -17,6 +18,10 @@ Es el uso de la red Toxicity, que permite clasificar una frase en ingles para ve
 ### No linear
 
 Es la creación de un modelo sencillo para aproximar una función no lineal. Se muestra como cargar los datos originales y los esperados para entrenar el modelo. Se incluye tambien lo básico para mostrar una gráfica con los datos originales y los aproximados.
+
+### Titanic
+
+Para probar lo básico de predecir resultados en base a la clasificación de unos resultados. En este caso se trata de usar los datos de todos los pasajeros del Titanic, obteniendo el resultado en base a clase, sexo, etc, la probabilidad de vivir o morir. Se usa la librería danfo.js para importar y tratar los datos originales, y tambien ver como usar la propia librería en un entonrno de Angular.
 
 ## Development server
 

@@ -22,6 +22,7 @@ import { NolinearComponent } from './nolinear/nolinear.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TitanicComponent } from './titanic/titanic.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         BasicFunctionsComponent,
         ToxicityComponent,
         NolinearComponent,
-        DialogoConfirmacionComponent
+        DialogoConfirmacionComponent,
+        TitanicComponent
     ],
     imports: [
         BrowserModule,
