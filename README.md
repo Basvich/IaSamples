@@ -3,8 +3,9 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3. Update a angular 15
 
 ## Que hay
-Es un proyecto que usa angular como base para probar diferentes ejecrcios relacionados con tensor flow JS. Y como usarlos. Algunos de los ejemplos son adaptaciones directas de los ejemplos obtenidos del libro **Leaning TensoFlow.js** Con algun pequeño cambio para que funcione.
-Hay 
+Es un proyecto que usa angular como base para probar diferentes ejecrcios relacionados con tensor flow JS. Y como usarlos de forma correcta. Algunos de los ejemplos son adaptaciones directas de los ejemplos obtenidos del libro **Leaning TensoFlow.js** Con algun pequeño cambio para que funcione.
+La parte básica de interface de usuario no está cuidada, aunque la forma de usar las cosas es lo mas correcta posible para poder tener una referencia de como hacer de una forma correcta ciertas cosas. En la mayor parte de los casos, se usan botones para realizar por separado las distintas acciones que llevan a obtener un resultado, de esta forma se separa la funcionalidad para que quede mas claro.
+
 
 
 ### basic-functions
@@ -22,6 +23,14 @@ Es la creación de un modelo sencillo para aproximar una función no lineal. Se 
 ### Titanic
 
 Para probar lo básico de predecir resultados en base a la clasificación de unos resultados. En este caso se trata de usar los datos de todos los pasajeros del Titanic, obteniendo el resultado en base a clase, sexo, etc, la probabilidad de vivir o morir. Se usa la librería danfo.js para importar y tratar los datos originales, y tambien ver como usar la propia librería en un entonrno de Angular.
+
+Es una adaptacion para web (angular) del capitulo 9 *Classification Models and Data Analysis* del libro *Learning TensorFlow.js*
+
+#### links
+
+- [danfo.js](https://danfo.jsdata.org/getting-started) y [danfo titanic](https://danfo.jsdata.org/examples/titanic-survival-prediction-using-danfo.js-and-tensorflow.js)
+- [ejempos Leanring TensorFlow.js](https://github.com/GantMan/learn-tfjs)
+- [datos titanic](https://github.com/GantMan/learn-tfjs/tree/master/chapter9/extra/titanic%20data)
 
 ## Development server
 

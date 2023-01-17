@@ -100,7 +100,7 @@ export class NolinearComponent implements OnInit {
     for (let i = 0; i < dataSize; i = i + stepSize) {
       jsxs.push(i);
       jsys.push(i * i);
-    };
+    }
     //Las entradas a mostrar son un rango mayor pero con menos precision
     for(let i=-5; i<15; i=i+0.5){
       this.xValues.push(i);
