@@ -22,6 +22,8 @@ import { NolinearComponent } from './nolinear/nolinear.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { TitanicComponent } from './titanic/titanic.component';
 
 
@@ -53,7 +55,9 @@ import { TitanicComponent } from './titanic/titanic.component';
         MatListModule,
         MatMenuModule,
         MatInputModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatTableModule,
+        MatPaginatorModule
     ],
     providers: [],
     bootstrap: [AppComponent]
