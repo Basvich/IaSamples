@@ -31,6 +31,7 @@ Es una adaptacion para web (angular) del capitulo 9 *Classification Models and D
 - [danfo.js](https://danfo.jsdata.org/getting-started) y [danfo titanic](https://danfo.jsdata.org/examples/titanic-survival-prediction-using-danfo.js-and-tensorflow.js)
 - [ejempos Leanring TensorFlow.js](https://github.com/GantMan/learn-tfjs)
 - [datos titanic](https://github.com/GantMan/learn-tfjs/tree/master/chapter9/extra/titanic%20data)
+- [flex css](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ## Development server
 

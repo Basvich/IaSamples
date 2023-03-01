@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip'
 import { TitanicComponent } from './titanic/titanic.component';
 
 
@@ -57,7 +58,8 @@ import { TitanicComponent } from './titanic/titanic.component';
         MatInputModule,
         MatProgressSpinnerModule,
         MatTableModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatTooltipModule
     ],
     providers: [],
     bootstrap: [AppComponent]

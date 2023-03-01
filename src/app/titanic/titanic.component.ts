@@ -1,14 +1,16 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import * as dfd from 'danfojs';
 import { DataFrame } from 'danfojs/dist/danfojs-base';
-import { CsvInputOptionsBrowser } from 'danfojs/dist/danfojs-base/shared/types';
 import * as tf from '@tensorflow/tfjs';
-import { Data } from '@angular/router';
-import { CdkTableDataSourceInput } from '@angular/cdk/table';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ArrayType1D } from 'danfojs/dist/danfojs-base/shared/types';
 
 /* eslint-env browser */
+
+interface IClases {
+  [key: string]: { [key: string]: number };
+}
 
 //const titanicTrainCsv = "https://raw.githubusercontent.com/pcsanwald/kaggle-titanic/master/train.csv"; //esta viene con los nombres entre comillas
 //const titanicTrainCsv = 'assets/titanic/titanic.csv';//'https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv';
@@ -20,11 +22,12 @@ const titanicTrainCsv = 'assets/titanic/titanic.train.csv';
   styleUrls: ['./titanic.component.scss']
 })
 export class TitanicComponent implements AfterViewInit {
- 
+
   private preparedData?: DataFrame;
-  public displayedColumns:Array<string> | undefined;
-  public dataSource=new MatTableDataSource();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  public displayedColumns: Array<string> | undefined;
+  public dataSource = new MatTableDataSource();
+  public CurrentClases: IClases | undefined;
+  @ViewChild('paginator1') paginator!: MatPaginator;  //Referencia directa al elemento html
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
@@ -51,7 +54,20 @@ export class TitanicComponent implements AfterViewInit {
     const tf = dfd.tensorflow //Tensorflow.js is exportedfrom Danfojs
     const tensor_arr = tf.tensor([12, 34, 56, 2])
     const s = new dfd.Series(tensor_arr)
-    s.print()
+    s.print();
+    //Realizando un encoder
+    const encoder = new dfd.LabelEncoder();
+    const d=encoder.fit(df['A']);
+    const enc_val = encoder.transform(df['A'])
+    const df2=df.drop({ columns: ["A"], inplace: false });    
+    df.head().print();
+    df2.head().print();
+    df2.addColumn('A',enc_val, {inplace:true});
+    df2.head().print();
+    let cm=df2.column('A'); 
+    //cm=df.column('AA');
+    df.head().print();
+
   }
 
   public async testDanfoLoadCsv() {
@@ -61,7 +77,7 @@ export class TitanicComponent implements AfterViewInit {
   }
 
   public async testLoadTitanic() {
-    
+
     try {
       let df = await dfd.readCSV(titanicTrainCsv);
       //do something with the CSV file
@@ -74,9 +90,9 @@ export class TitanicComponent implements AfterViewInit {
       // Print the describe data
       //df.describe().print();
       // Count of empty spots      
-      
-      const df2=this.standarizeData(df);
-      this.preparedData=df2;
+
+      const df2 = this.standarizeData(df);
+      this.preparedData = df2;
       /* const jsss=dfd.toJSON(df2);
       console.log(jsss); */
     } catch (error) {
@@ -103,25 +119,25 @@ export class TitanicComponent implements AfterViewInit {
       validationSplit: 0.2,// Asking the model to save 20% for validation on the fly
       callbacks: {
         onEpochEnd: async (epoch, logs) => {
-          if(logs)  console.log(`EPOCH (${epoch + 1}): Train Accuracy: ${(logs['acc'] * 100).toFixed(2)}, Val Accuracy:  ${(logs['val_acc'] * 100).toFixed(2)}\n`);
+          if (logs) console.log(`EPOCH (${epoch + 1}): Train Accuracy: ${(logs['acc'] * 100).toFixed(2)}, Val Accuracy:  ${(logs['val_acc'] * 100).toFixed(2)}\n`);
         },
-        onTrainEnd: async ()=>{
-          
-        }         
+        onTrainEnd: async () => {
+
+        }
       }
     });
 
   }
 
-  public showDataInTable(df?:DataFrame){
-    const df2=df??this.preparedData;  //feo
-    if(!df2) return;
-    const jss=dfd.toJSON(df2);
-    const cols=TableHelper.CalcColums(jss as any[]);
-    this.displayedColumns=cols;
-    const ds=jss as any[];
-    this.dataSource.data =ds; //new MatTableDataSource(ds);
-    this.table.renderRows();
+  public showDataInTable(df?: DataFrame) {
+    const df2 = df ?? this.preparedData;  //feo
+    if (!df2) return;
+    const jss = dfd.toJSON(df2);
+    const cols = TableHelper.CalcColums(jss as any[]);
+    this.displayedColumns = cols;
+    const ds = jss as any[];
+    this.dataSource.data = ds; //new MatTableDataSource(ds);
+    //this.table.renderRows();
   }
 
   private countEmptySpots(df: DataFrame) {
@@ -143,21 +159,59 @@ export class TitanicComponent implements AfterViewInit {
     //Convierte textos repetidos en labels numericas, o sea en nmúmeros
     const encoder = new dfd.LabelEncoder()
     const cols = ["sex", "embarked"]; //Columnas que se modifican hacia labels (numeros)
+    const clases: IClases = {};
     cols.forEach(col => {
       const d = encoder.fit(df[col]);
-      //Mirando la propiedad d.labels, podemos obtener la corresponencia string-> numero obtenida
+      const clas = d.classes; //La correspondencia entre labels y valores
+      clases[col] = clas;
       const enc_val = encoder.transform(df[col])
-      df.addColumn(col, enc_val, { inplace: true })
+      df=df.addColumn(col, enc_val, { inplace: true })
     });
+    this.CurrentClases = clases;
     //Tambien se podría haber realizado: df["Embarked"] = encoder.transform(onlyFull["Embarked"].values);
     df.head().print()
     return df;
   }
 
-  private standarizeData(df: DataFrame):DataFrame{
-    let scaler = new dfd.MinMaxScaler();
-    const sf=scaler.fit(df);
-    const df2=scaler.transform(df);
+  private standarizeData(df: DataFrame): DataFrame {    
+    /* const data = {
+      fruits: ['pear', 'mango', "pawpaw", "mango", "bean"],
+      Count: [20, 30, 89, 12, 30],
+      Country: ["NG", "NG", "GH", "RU", "RU"]
+    };
+    const dff = new dfd.DataFrame(data);
+    dff.print();
+    const dum_df = dfd.getDummies(dff,{ columns: ['fruits']});
+    dum_df.print(); */
+
+    //La columna sexo , se va a transformar en 2 columnas separadas para hombre mujer, que es mejor que una sola entre 0-1
+    /*  const sexOneHot = dfd.getDummies(df, { columns: ['sex'], prefix:'P' });
+    df.drop({ columns: 'sex', inplace: true });
+    df.addColumn('male', sexOneHot['0']);
+    df.addColumn('female', sexOneHot['1']); */
+    console.log(df.columns);  
+    df.ctypes.print(); 
+    let cm=df.column('embarked'); 
+    cm=df.column('sex');
+    if (false && !!this.CurrentClases) {
+      /* var v1 = this.CurrentClases['sex']['male'];   
+      df.head().print();   
+      df.ctypes.print();
+      const cm=df.column('sex');
+      const male = (cm.apply((x: number) => { return x == v1 ? 1 : 0 }).values) as ArrayType1D;
+      //replace in df
+      df.addColumn("male", male, { inplace: true });
+      v1 = this.CurrentClases['sex']['female'];
+      const female = df['sex'].apply((x: number) => { return x == v1 ? 1 : 0 }).values
+      df.addColumn('female', female);
+      df.drop({ columns: 'sex', inplace: true }); */
+    }
+    const scaler = new dfd.MinMaxScaler();
+    //Obtiene los maximos y minimos de cada columna
+    const sf = scaler.fit(df);
+    //Normaliza todas las columnas con esos maximos y minimos para tener valores entre [0,1]
+    const df2 = scaler.transform(df);
+
     return df2;
   }
 
@@ -194,7 +248,13 @@ export class TitanicComponent implements AfterViewInit {
    */
   private getModel(): tf.Sequential {
     const model = tf.sequential();
-    model.add(tf.layers.dense({ inputShape: [7], units: 124, activation: 'relu', kernelInitializer: 'leCunNormal' }));
+    model.add(
+      tf.layers.dense({
+        inputShape: [7],
+        units: 124,
+        activation: 'relu', 
+        kernelInitializer: 'leCunNormal'
+      }));
     model.add(tf.layers.dense({ units: 64, activation: 'relu' }));
     model.add(tf.layers.dense({ units: 32, activation: 'relu' }));
     model.add(tf.layers.dense({ units: 1, activation: "sigmoid" }))
@@ -227,17 +287,17 @@ export class TitanicComponent implements AfterViewInit {
 
 }
 
-class TableHelper{
+class TableHelper {
   /**
    * Devuelve las columnas para una tabla
    * @param data 
    * @returns 
    */
-  static CalcColums(data:any[]):string[]{
-    const res:string[]=[];
-    if(data.length<=0) throw new Error("No data");
-    const f=data[0];
-    for(const p in f){
+  static CalcColums(data: any[]): string[] {
+    const res: string[] = [];
+    if (data.length <= 0) throw new Error("No data");
+    const f = data[0];
+    for (const p in f) {
       res.push(p);
     }
     return res;

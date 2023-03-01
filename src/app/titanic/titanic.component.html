@@ -1,19 +1,21 @@
 <p>titanic works!</p>
-<button mat-button color="primary" (click)="testDanfo()">Test danfo.js</button>
-<button mat-button color="primary" (click)="testLoadTitanic()">load remote data Titanic csv</button>
-<button mat-button color="primary" (click)="showDataInTable()">show data</button>
-<button mat-button color="primary" (click)="trainData()">Training</button>
-
-
+<div flex>
+<button mat-button color="primary" (click)="testDanfo()" matTooltip="Simple test de que carga danfo.js">Test danfo.js</button>
+<button mat-button color="primary" (click)="testLoadTitanic()" matTooltip="Carga y procesa los datos de pasajeros">load remote data Titanic csv</button>
+<button mat-button color="primary" (click)="showDataInTable()" matTooltip="Muestra los datos procesados">show data</button>
+<button mat-button color="primary" (click)="trainData()" matTooltip="Ejecuta el entrenamiento">Training</button>
+</div>
+<div flex>
 <table #table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
         <mat-header-cell *matHeaderCellDef>{{disCol}}</mat-header-cell>
-        <mat-cell *matCellDef="let element "> {{element[disCol] | number:'1.1-2'}}
+        <mat-cell *matCellDef="let element "> {{element[disCol] | number:'1.2-2'}}
         </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </table>
-<mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+<mat-paginator #paginator1 [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
